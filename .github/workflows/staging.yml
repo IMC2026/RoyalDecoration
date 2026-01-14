@@ -1,0 +1,40 @@
+name: Auto Deploy to Staging
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Setup SSH key
+      - name: Setup SSH
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      # Step 3: Deploy custom addons to staging server
+      - name: Deploy to Staging Server
+        run: |
+          rsync -avz --delete -e 'ssh -o StrictHostKeyChecking=no' \
+            ./* root@213.199.55.77:/opt/odoo/staging/custom_addons/
+
+      # Step 4: Restart staging Odoo container
+      - name: Restart Staging Odoo Container
+        run: |
+          ssh -o StrictHostKeyChecking=no root@213.199.55.77 \
+            "cd /opt/odoo/staging && docker-compose restart odoo_staging"
+
+      # Step 5: Wait for container to be healthy
+      - name: Wait for Container
+        run: |
+          ssh -o StrictHostKeyChecking=no root@213.199.55.77 \
+            "sleep 10 && docker ps --filter name=odoo_staging --format 'Container: {{.Names}} - Status: {{.Status}}'"
