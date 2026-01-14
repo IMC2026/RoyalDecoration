@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="accounting_pdf_reports.menu_account_report_bs" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_balance_sheet_reports')])]"/>
+        </record>
+
+        <record id="accounting_pdf_reports.menu_account_report_pl" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_profit_and_loss_reports')])]"/>
+        </record>
+
+        <record id="accounting_pdf_reports.menu_partner_ledger" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_partner_ledger_reports')])]"/>
+        </record>
+
+        <record id="accounting_pdf_reports.menu_aged_trial_balance" model="ir.ui.menu">
+            <field name="groups_id"
+                   eval="[(6, 0, [ref('access_rights_management.group_aged_partner_balance_reports')])]"/>
+        </record>
+
+        <record id="accounting_pdf_reports.menu_aged_receivable" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_aged_receivable_reports')])]"/>
+        </record>
+
+        <record id="accounting_pdf_reports.menu_aged_payable" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_aged_receivable_reports')])]"/>
+        </record>
+
+        <record id="accounting_pdf_reports.menu_general_ledger" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_general_ledger_reports')])]"/>
+        </record>
+
+        <record id="accounting_pdf_reports.menu_general_balance_report" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_trial_balance_reports')])]"/>
+        </record>
+
+        <record id="accounting_pdf_reports.menu_account_report" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_tax_report_reports')])]"/>
+        </record>
+
+        <record id="accounting_pdf_reports.menu_print_journal" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_journal_audit_reports')])]"/>
+        </record>
+
+        <record id="om_account_daily_reports.menu_daybook" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_day_book_reports')])]"/>
+        </record>
+
+        <record id="om_account_daily_reports.menu_cashbook" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_cash_book_reports')])]"/>
+        </record>
+
+        <record id="om_account_daily_reports.menu_bankbook" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_bank_book_reports')])]"/>
+        </record>
+
+        <record id="account.menu_action_account_invoice_report_all" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('access_rights_management.group_invoice_analysis_reports')])]"/>
+        </record>
+
+        <record id="account.menu_action_analytic_reporting" model="ir.ui.menu">
+            <field name="groups_id"
+                   eval="[(6, 0, [ref('access_rights_management.group_analytic_reporting_reports')])]"/>
+        </record>
+
+        <record id="om_account_budget.menu_act_crossovered_budget_lines_view" model="ir.ui.menu">
+            <field name="groups_id"
+                   eval="[(6, 0, [ref('access_rights_management.group_budgets_analysis_reports')])]"/>
+        </record>
+
+        <record id="om_account_asset.menu_action_asset_asset_report" model="ir.ui.menu">
+            <field name="groups_id"
+                   eval="[(6, 0, [ref('access_rights_management.group_assets_reports')])]"/>
+        </record>
+
+    </data>
+</odoo>

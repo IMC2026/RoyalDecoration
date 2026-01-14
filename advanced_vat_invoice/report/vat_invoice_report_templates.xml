@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Template for VAT invoice report-->
+    <template id="vat_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+
+                        <!--                        <h4>-->
+                        <!--                            <center>-->
+                        <!--                                <span class="text-right">فاتورة ضريبية مبسطة-->
+                        <!--                                </span>-->
+                        <!--                                <br/>-->
+                        <!--                                <span>VAT Invoice</span>-->
+                        <!--                            </center>-->
+                        <!--                        </h4>-->
+                    </div>
+                    <style>
+                        .page-break {
+                        page-break-before: always; /* يجبر المحتوى على البدء في صفحة جديدة */
+                        }
+                    </style>
+
+                    <!--<div>-->
+
+                    <!--    <table style="width: 100%; border-top: 2px solid #000000 !important; border-bottom: 2px solid #000000 !important; border-left: 1px solid white !important; border-right: 1px solid white !important; padding: 5px !important; font-family: Arial, sans-serif; background-color: #ffffff; margin-top: -45px; margin-bottom: -20px;">-->
+                    <!--        <tr style="border-top: 2px solid #000000 !important; border-bottom: 2px solid #000000 !important; padding: 5px !important; background-color: #ffffff;">-->
+                    <!--            <td style="width: 33%; border-top: 2px solid black !important; border-bottom: 2px solid black !important; border-left: 1px solid white !important; border-right: 0px solid white !important; height: 40px; background-color: #ffffff; font-size: 18px; text-align: left; line-height: 40px;">-->
+                    <!--                Invoice Number-->
+                    <!--            </td>-->
+
+                    <!--            <td style="width: 33%; border-top: 2px solid black !important; border-bottom: 2px solid black !important; border-left: 1px solid white !important; border-right: 1px solid white !important; height: 40px; background-color: #ffffff; font-size: 18px; text-align: left; line-height: 40px;">-->
+                    <!--                <t t-esc="doc.name"/>-->
+                    <!--            </td>-->
+
+                    <!--            <td class="red" style="width: 33%; 2px solid black !important; 2px solid black !important; border-left: 1px solid white !important; border-right: 1px solid white !important; height: 40px; background-color: #ffffff; font-size: 18px; text-align: left; line-height: 40px;">-->
+                    <!--                رقم الفاتورة-->
+                    <!--            </td>-->
+
+                    <!--        </tr>-->
+                    <!--    </table>-->
+                    <!--</div>-->
+                    <!--<br/>-->
+                    <div class="row" style="position: relative; top: -43px;">
+                        <div class="col-9" style="">
+   <table style="width:100%; border-collapse: collapse; color:black;" class="table table-bordered table-sm ;border-right:1px solid white !important;border-left:1px solid white !important">
+    <!-- Main Header Row -->
+    <tr style="background-color: #ffffff;">
+        <td style="width: 33%; border: 1px solid black; height: 40px; background-color: #ffffff; font-size: 18px; text-align: left; line-height: 40px;border-right:1px solid white !important;border-left:1px solid white !important ;border-top:1px solid white !important ;border-bottom:2px solid black !important">
+            <span style="font-size: 24px;">Tax Invoice</span>
+        </td>
+        <td style="width: 33%; border: 1px solid black; height: 40px; background-color: #ffffff; font-size: 18px; text-align: center; line-height: 40px;border-right:1px solid white !important;border-left:1px solid white !important;border-top:1px solid white !important ;border-bottom:2px solid black;">
+            <!-- Optional doc.name -->
+        </td>
+        <td style="width: 33%; border: 1px solid black; height: 40px; background-color: #ffffff; font-size: 18px; text-align: right; line-height: 40px;border-right:1px solid white !important;border-left:1px solid white !important ;border-top:1px solid white !important ;border-bottom:2px solid black">
+            <span style="font-size: 24px;">فاتورة ضريبية</span>
+        </td>
+    </tr>
+
+    <!-- Invoice Number Row -->
+    <tr style="background-color: #ffffff;">
+        <td style="width: 33%; font-size: 18px; text-align: left; line-height: 40px; border: 1px solid black;border-right:1px solid white !important;border-left:1px solid white !important ;background-color: white !important;" dir="rtl">
+             Invoice Number
+        </td>
+        <td style="width: 33%; font-size: 18px; text-align: center; line-height: 40px; border: 1px solid black;border-right:1px solid white !important;border-left:1px solid white !important ;">
+            <t t-esc="doc.name"/>
+        </td>
+        <td style="width: 33%; font-size: 18px; text-align: right; line-height: 40px; border: 1px solid black;border-right:1px solid white !important;border-left:1px solid white !important ;background-color: white !important;" dir="ltr">
+            رقم الفاتورة
+        </td>
+    </tr>
+
+    <!-- Invoice Date Row -->
+    <tr style="background-color: #ffffff;">
+        <td style="font-weight:bold; width: 33%; border: 1px solid black;border-right:1px solid white !important;border-left:1px solid white !important">
+            Invoice Issue Date:
+        </td>
+        <td style="width: 33%; text-align:center; border: 1px solid black;border-right:1px solid white !important;border-left:1px solid white !important">
+            <t t-esc="doc.invoice_date"/>
+        </td>
+        <td style="width: 33%; text-align:right; border: 1px solid black;border-right:1px solid white !important;border-left:1px solid white !important ;background-color: white !important;">
+            تاريخ الفاتورة
+        </td>
+    </tr>
+
+    <!-- Due Date Row -->
+    <tr style="background-color: #ffffff;">
+        <td style="font-weight:bold; width: 33%; border: 1px solid black;border-right:1px solid white !important;border-left:1px solid white !important">
+            Due Date:
+        </td>
+        <td style="width: 33%; text-align:center; border: 1px solid black;border-right:1px solid white !important;border-left:1px solid white !important">
+            <t t-if="not doc.invoice_payment_term_id">
+                <t t-esc="doc.invoice_date_due"/>
+            </t>
+            <t t-else="">
+                <t t-esc="doc.invoice_payment_term_id.name"/>
+            </t>
+        </td>
+        <td style="width: 33%; text-align:right; border: 1px solid black;border-right:1px solid white !important;border-left:1px solid white !important ;background-color: white !important;">
+            تاريخ الاستحقاق
+        </td>
+    </tr>
+
+    <!-- Customer PO Reference Row -->
+    <tr style="background-color: #ffffff;">
+        <td style="font-weight:bold; width: 33%; border: 1px solid black;background-color: white !important;color :black;border-right:1px solid white !important;border-left:1px solid white !important">
+            Customer PO Ref.
+        </td>
+        <td style="width: 33%; text-align:center; border: 1px solid black;background-color: white !important;color :black;border-right:1px solid white !important;border-left:1px solid white !important">
+            <t t-esc="doc.ref"/>
+        </td>
+        <td style="width: 33%; text-align:right; border: 1px solid black;background-color: white !important;color :black;border-right:1px solid white !important;border-left:1px solid white !important">
+            رقم طلب الشراء
+        </td>
+    </tr>
+</table>                            <br/>
+                        </div>
+                        <br/>
+                        <div class="col-3 " style="margin-top: 18pt; padding-left:30pt;">
+                            <img t-attf-src="data:image/png;base64, {{doc.qr}}"/>
+                        </div>
+                    </div>
+
+                    <table style="border-top: 2pt solid black !important; border-bottom: 2pt solid black !important; border-left: white !important; border-right: white !important; width: 100%; color: black; margin-top: -40px;"
+                           class="table-condensed">
+                        <thead>
+                            <tr>
+                                <th style="text-transform: none;border-top: 1pt solid black !important; border-bottom: 1pt solid black !important; border-left: white !important; border-right: none !important; padding: 5px !important; width: 15% !important; background-color: white !important;">
+                                    <span>Seller</span>
+                                </th>
+                                <!--                                <th style="border-top: 1pt solid black !important; border-bottom: 1pt solid black !important; border-left: white !important; border-right: none !important; padding: 5px !important; width: 15% !important; background-color: white !important;">-->
+                                <!--                                    <span>البائع</span>-->
+                                <!--                                </th>-->
+                                <th style="border-top: 1pt solid black !important; border-bottom: 1pt solid black !important; border-left: white !important; border-right: none !important; padding: 5px !important; width: 15% !important; background-color: white !important;"/>
+
+                                <!--                                <th style="border-top: 1pt solid black !important; border-bottom: 1pt solid black !important; border-left: white !important; border-right: none !important; padding: 5px !important; width: 15% !important; background-color: white !important;">-->
+                                <!--                                    المشتري-->
+                                <!--                                </th>-->
+                                <th style="border-top: 1pt solid black !important; border-bottom: 1pt solid black !important; border-left: white !important; border-right: white !important; padding: 5px !important; width: 15% !important; background-color: white !important;"/>
+                                <th style="text-transform: none;border-top: 1pt solid black !important; border-bottom: 1pt solid black !important; border-left: white !important; border-right: none !important; padding: 5px !important; width: 15% !important; background-color: white !important;">
+                                    Buyer
+                                </th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+
+                                <t t-esc="doc.company_id.name"/>
+                            </td>
+                            <td style=" border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid white;text-align:center;padding:1px;">
+
+                                Name
+                            </td>
+                            <td width="15%" style=" border:1px solid black; text-align:center;padding:1px;">
+
+                                الإسم
+                            </td>
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid black;text-align:center;text-align:center;padding:1px;">
+
+                                <t t-esc="doc.partner_id.name"/>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+
+                                <t t-esc="doc.company_id.arabic_name"/>
+                            </td>
+                            <td style=" border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid white;text-align:center;padding:1px;">
+
+                                Arabic Name
+                            </td>
+                            <td width="15%" style=" border:1px solid black; text-align:center;padding:1px;">
+
+                                الإسم بالعربي
+                            </td>
+
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid black;text-align:center;text-align:center;padding:1px;">
+
+                                <t t-esc="doc.partner_id.arabic_name"/>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                <t t-esc="doc.company_id.street"/>
+                            </td>
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid white;text-align:center;padding:1px;">
+                                Street Name
+                            </td>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                إسم الشارع
+                            </td>
+
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid black;text-align:center;text-align:center;padding:1px;">
+                                <t t-esc="doc.partner_id.street"/>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                <t t-esc="doc.company_id.city"/>
+                            </td>
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid white;text-align:center; width:10%;padding:1px">
+                                District
+                            </td>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                المنطقة
+                            </td>
+
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid black;text-align:center;text-align:center;padding:1px;">
+                                <t t-esc="doc.partner_id.city"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                <t t-esc="doc.company_id.state_id.name"/>
+                            </td>
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid white;text-align:center;padding:1px;width:8%">
+                                State
+                            </td>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                الحالة
+                            </td>
+
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid black;text-align:center;text-align:center;padding:1px;">
+                                <t t-esc="doc.partner_id.state_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                <t t-esc="doc.company_id.country_id.name"/>
+                            </td>
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid white;text-align:center; width:10%;padding:1px">
+                                Country
+                            </td>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                البلد
+                            </td>
+
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid black;text-align:center;text-align:center;padding:1px;">
+                                <t t-esc="doc.partner_id.country_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                <t t-esc="doc.company_id.zip"/>
+                            </td>
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid white;text-align:center;padding:1px;">
+                                PIN Code
+                            </td>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                الرمز البريدي
+                            </td>
+
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid black;text-align:center;text-align:center;padding:1px;">
+                                <t t-esc="doc.partner_id.zip"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                <t t-esc="doc.company_id.phone"/>
+                            </td>
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid white;text-align:center;padding:1px;">
+                                Phone No.
+                            </td>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                رقم الهاتف
+                            </td>
+
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid black;text-align:center;text-align:center;padding:1px;">
+                                <t t-esc="doc.partner_id.phone"/>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                <t t-esc="doc.company_id.vat"/>
+                            </td>
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid white;text-align:center;padding:1px;">
+                                VAT No.
+                            </td>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+
+                                الرقم الضريبي
+                            </td>
+
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid black;text-align:center;text-align:center;padding:1px;">
+                                <t t-esc="doc.partner_id.vat"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                <t t-esc="doc.company_id.commercial_register_no"/>
+                            </td>
+                            <td style="border-top:1px solid black; border-bottom:1px solid black; border-right:1px solid black; border-left:1px solid white; text-align:center; padding:1px; white-space: nowrap;">
+                                Commercial Register No.
+                            </td>
+                            <td style="border:1px solid black;text-align:center;padding:1px;">
+                                رقم السجل التجاري
+                            </td>
+
+                            <td style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid black;border-left:1px solid black;text-align:center;text-align:center;padding:1px;">
+                                <t t-esc="doc.partner_id.commercial_register_no"/>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <br/>
+                    <table style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid white;border-left:1px solid black;width:100%; height: 23px;color:black; margin-top:10pt;"
+                           class="table-condensed table-sm">
+                        <tr>
+                            <td style="padding:1px;margin:0pt;font-weight: bold;text-align:center;border-top:2px solid black; border-bottom:2px solid black ; border-right:1px solid white;border-left:1px solid white;">
+                                <span class="text-right arabic">Order Line
+                                    Items/البنود
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="border-top:1px solid black; border-bottom:1px solid black; border-right:none; border-left:none; width:100%; color:black; margin-top:0pt;"
+                           class="table-condensed">
+                        <thead>
+                            <tr>
+                                <td width="5%"
+                                    style="text-align:center;padding:1px; border-top:1px solid white; border-bottom:2px solid black; border-right:1px solid black; border-left:1px solid black;">
+                                    No.
+                                    <br/>
+                                    <span class="product">رقم البند</span>
+                                </td>
+
+                                <!--<td width="20%" style="text-align:center;padding:1px; border-top:1px solid white; border-bottom:2px solid black; border-right:1px solid black; border-left:1px solid white;">-->
+                                <!--    Item-->
+                                <!--    <br/>-->
+                                <!--    <span class="product">المنتج</span>-->
+                                <!--</td>-->
+
+                                <td width="35%"
+                                    style="text-align:center;padding:1px; border-top:1px solid white; border-bottom:2px solid black; border-right:1px solid black; border-left:1px solid white;">
+                                    Item Description
+                                    <br/>
+                                    <span class="product">وصف المنتج</span>
+                                </td>
+                                <td style="text-align:center;padding:1px; border-top:1px solid white; border-bottom:2px solid black; border-right:1px solid black; border-left:1px solid black;">
+                                    Unit Price
+                                    <br/>
+                                    <span class="price">سعر الوحدة</span>
+                                </td>
+                                <td style="text-align:center;padding:1px;width:7%; border-top:1px solid white; border-bottom:2px solid black; border-right:1px solid black; border-left:1px solid black;">
+                                    Quantity
+                                    <br/>
+                                    <span class="qty">الكمية</span>
+                                </td>
+                                <td style="text-align:center;padding:1px; border-top:1px solid white; border-bottom:2px solid black; border-right:1px solid black; border-left:1px solid black;">
+                                    Untaxed Amount
+                                    <br/>
+                                    <span class="tax">المبلغ الخاضع للضريبة</span>
+                                </td>
+                                <td style="text-align:center;width:10%;padding:1px; border-top:1px solid white; border-bottom:2px solid black; border-right:1px solid black; border-left:1px solid black;">
+                                    Dis
+                                    <br/>
+                                    <span class="discount">الخصم</span>
+                                </td>
+                                <td style="text-align:center;width:8%;padding:1px; border-top:1px solid white; border-bottom:2px solid black; border-right:1px solid black; border-left:1px solid black;">
+                                    Vat Rate
+                                    <br/>
+                                    <span class="tax_rate">نسبة الضريبة</span>
+                                </td>
+                                <td style="text-align:center;width:10%;padding:1px; border-top:1px solid white; border-bottom:2px solid black; border-right:1px solid black; border-left:1px solid black;">
+                                    Vat
+                                    <br/>
+                                    <span class="amount">الضريبة</span>
+                                </td>
+                                <td style="text-align:center;padding:1px; border-top:1px solid white; border-bottom:2px solid black; border-right:1px solid black; border-left:1px solid black;">
+                                    Subtotal
+                                    <br/>(Untaxed)
+                                    <br/>
+                                    <span class="sub_total">المجموع غير شامل الضريبة</span>
+                                </td>
+                            </tr>
+                        </thead>
+
+                        <t t-set="tax_total" t-value="0"/>
+                        <t t-set="discount_total" t-value="0"/>
+
+                        <tbody class="invoice_line">
+                            <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                <t t-set="line_tax_total" t-value="0"/>
+                                <t t-foreach="line.tax_ids" t-as="tax">
+                                    <t t-set="tax_total" t-value="tax_total + line.price_subtotal * tax.amount / 100"/>
+                                    <t t-set="line_tax_total" t-value="line_tax_total + tax.amount"/>
+                                </t>
+                                <t t-set="discount_total"
+                                   t-value="discount_total + ((line.price_unit * line.quantity) - line.price_subtotal)"/>
+
+                                <!-- Section -->
+                                <t t-if="line.display_type == 'line_section'">
+                                    <tr>
+                                        <td colspan="12"
+                                            style="font-weight: bold; font-size: 13px; text-align: left; padding: 6px; background-color: #d3d3d3;">
+                                            <t t-esc="line.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
+
+                                <!-- Note -->
+                                <t t-elif="line.display_type == 'line_note'">
+                                    <tr>
+                                        <td colspan="12" style="font-style: italic; text-align: left;">
+                                            <t t-esc="line.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
+
+                                <!-- Regular line -->
+                                <t t-else="">
+                                    <tr>
+                                        <td style="border-right:1px solid black; border-left:1px solid black; padding:3pt; text-align: center;">
+                                            <span t-field="line.line_no" style="width :5%"/>
+                                        </td>
+                                        <!--<td style="border-right:1px solid black; border-left:1px solid black; padding:3pt; text-align: center;">-->
+                                        <!--    <span t-field="line.product_id.name"/>-->
+                                        <!--</td>-->
+
+
+                                        <td style="border-right:1px solid black; border-left:1px solid white; padding:3pt; text-align: center;width :40%">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <td style="border-right:1px solid black; text-align: center; padding:3pt;">
+                                            <span t-esc="'{:,.2f}'.format(line.price_unit or 0)"/>
+                                        </td>
+                                        <td style="border-right:1px solid black; text-align: center; padding:3pt;">
+                                            <span t-esc="'%.2f %s' % (line.quantity, line.product_uom_id.name)"/>
+                                        </td>
+                                        <td style="border-right:1px solid black; text-align: center; padding:2px;">
+                                            <span t-esc="line.price_unit * line.quantity and '{:,.2f}'.format(line.price_unit * line.quantity) or ''"/>
+                                        </td>
+                                        <td style="border-right:1px solid black; text-align: center; padding:3pt;">
+
+                                            <span t-esc="'{:,.2f}'.format(line.discount or 0)"/>
+                                        </td>
+                                        <td style="border-right:1px solid black; text-align: center; padding:1px;">
+                                            <t t-foreach="line.tax_ids" t-as="tax">
+                                                <span t-esc="int(tax.amount)"/>%
+                                            </t>
+                                            <span t-if="not line.tax_ids">0 %</span>
+                                        </td>
+                                        <td style="border-right:1px solid black; text-align: center; padding:1px;">
+                                            <t t-set="line_tax_total"
+                                               t-value="line.price_subtotal * line_tax_total / 100"/>
+                                            <span t-esc="line_tax_total and '{:,.2f}'.format(line_tax_total) or ''"/>
+                                        </td>
+                                        <td style="border-right:1px solid black; text-align: center; padding:3pt;">
+                                            <span t-field="line.price_subtotal"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                    <br/>
+
+
+                    <table style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid white;border-left:1px solid white;width:100%;color:black;"
+                           class="table table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <td width="40%" style="font-weight: bold;text-align:left;padding:1px">
+                                    Total
+                                    Amount (excl. VAT)
+                                </td>
+                                <td class="amount" width="40%"
+                                    style="text-align:right;padding:1px ; border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid white;border-left:1px solid black;">
+                                    المبلغ قبل الضريبة
+                                </td>
+                                <td width="40%" style="text-align:right;padding:1px" class="text-right">
+                                    <span t-esc="doc.currency_id.symbol"/>
+
+                                    <span t-esc="doc.amount_untaxed and '{:,.2f}'.format(doc.amount_untaxed) or ''"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;text-align:left;padding:3pt">
+                                    Total VAT
+                                </td>
+                                <td class="total" style="text-align:right;padding:3pt">مجموع الضريبة</td>
+                                <td style="text-align:right;padding:3pt" class="text-right">
+                                    <span t-esc="doc.currency_id.symbol"/>
+
+                                    <span t-esc="'{:,.2f}'.format(tax_total) if tax_total else ''"/>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;text-align:left;padding:3pt">
+                                    Grand Total
+                                </td>
+                                <td class="due" style="text-align:right;padding:3pt">الإجمالي
+                                </td>
+                                <td style="text-align:right;padding:3pt" class="text-right">
+                                    <span t-esc="doc.currency_id.symbol"/>
+
+                                    <span t-esc="'{:,.2f}'.format(doc.amount_total_signed) if doc.amount_total_signed else '0.00'"/>
+
+
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <!--<br/>-->
+                    <!--                    <style>.l {-->
+                    <!--                        width: 26%; /* Adjust based on 1.6/12 */-->
+                    <!--                        flex: 0 0 auto;-->
+                    <!--                        margin:0;-->
+                    <!--                        padding :0;-->
+
+                    <!--                        }-->
+
+                    <!--                        .lk {-->
+                    <!--                        width: 20%; /* Adjust based on 1.6/12 */-->
+                    <!--                        flex: 0 0 auto;-->
+                    <!--                        margin:0;-->
+                    <!--                        padding :0;-->
+                    <!--                        }-->
+                    <!--                    </style>-->
+
+<!--                    <div style="page-break-inside: avoid;">-->
+<!--                        <table style="border-collapse: collapse; border: 0px solid white; width: 100%; text-align: left;">-->
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <td style="padding: 0px; border: 0px solid white; text-align: left;">-->
+<!--                                        <strong>-->
+<!--                                            <span style="font-weight: 900;">Bank Details :</span>-->
+<!--                                        </strong>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td style="padding: 0px; border: 0px solid white; text-align: left;">-->
+<!--                                        <span>Account Name:</span>-->
+<!--                                        <span t-esc="doc.company_id.bank_account_name"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td style="padding: 0px; border: 0px solid white; text-align: left;">-->
+<!--                                        <span>Bank IBAN:</span>-->
+<!--                                        <span t-esc="doc.company_id.bank_iban"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td style="padding: 0px; border: 0px solid white; text-align: left;">-->
+<!--                                        <span>Bank Name:</span>-->
+<!--                                        <span t-esc="doc.company_id.bank_name"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td style="padding: 0px; border: 0px solid white; text-align: left;">-->
+<!--                                        <span>Bank City:</span>-->
+<!--                                        <span t-esc="doc.company_id.bank_city"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                        </table>-->
+<!--                    </div>-->
+
+                    <br/>
+                    <table style="border:1px solid white; width:100%;">
+                        <tr style="border:1px solid white; display:flex; flex-wrap:nowrap; justify-content:space-between;">
+                            <td style="white-space:nowrap; padding-right:15px;border:1px solid white;">
+                                Account Name :
+                                <span t-esc="doc.company_id.bank_account_name"/>
+                            </td>
+                            <td style="white-space:nowrap; padding-right:15px;border:1px solid white;">
+                                Bank IBAN :
+                                <span t-esc="doc.company_id.bank_iban"/>
+                            </td>
+                            <td style="white-space:nowrap; padding-right:15px;border:1px solid white;">
+                                Bank Name :
+                                <span t-esc="doc.company_id.bank_name"/>
+                            </td>
+                            <td style="white-space:nowrap;border:1px solid white;">
+                                Bank City :
+                                <span t-esc="doc.company_id.bank_city"/>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <!--                    <table style="border-top:1px solid black; border-bottom:1px solid black ; border-right:1px solid white;border-left:1px solid black;width:100%; height: 23px;color:black; margin-top:10pt;"-->
+                    <!--                           class="table-condensed table-sm   page-break">-->
+                    <!--                        <tr>-->
+                    <!--                            <br/>-->
+                    <!--                            <br/>-->
+                    <!--                            <br/>-->
+                    <!--                            <br/>-->
+                    <!--                            <td style="padding:1px;margin:0pt;font-weight: bold;text-align:center;border-top:2px solid black; border-bottom:2px solid black ; border-right:1px solid white;border-left:1px solid white;">-->
+                    <!--                                <span class="text-right arabic">Order Line-->
+                    <!--                                    Items/البنود-->
+                    <!--                                </span>-->
+                    <!--                            </td>-->
+                    <!--                        </tr>-->
+                    <!--                    </table>-->
+
+                    <!--                    <table class="page-break"-->
+                    <!--                           style="width: 100%; border-top: 2px solid #000000 !important; border-bottom: 2px solid #000000 !important; border-left: 1px solid white !important; border-right: 1px solid white !important; padding: 5px !important; font-family: Arial, sans-serif; background-color: #ffffff; margin-top: -45px; margin-bottom: -20px;">-->
+                    <!--                        <thead>-->
+                    <!--                            <tr style="background-color:#DCDCDC">-->
+                    <!--                                <td style="width: 33%; border-top: 2px solid black !important; border-bottom: 2px solid black !important; border-left: 1px solid white !important; border-right: 0px solid white !important; height: 40px; background-color: #ffffff; font-size: 18px; text-align: left; line-height: 40px;">-->
+                    <!--                                    Item No.-->
+                    <!--                                </td>-->
+                    <!--                                <td style="width: 33%; border-top: 2px solid black !important; border-bottom: 2px solid black !important; border-left: 1px solid white !important; border-right: 0px solid white !important; height: 40px; background-color: #ffffff; font-size: 18px; text-align: left; line-height: 40px;">-->
+                    <!--                                    Product Category-->
+                    <!--                                </td>-->
+                    <!--                                <td style="width: 33%; border-top: 2px solid black !important; border-bottom: 2px solid black !important; border-left: 1px solid white !important; border-right: 0px solid white !important; height: 40px; background-color: #ffffff; font-size: 18px; text-align: left; line-height: 40px;">-->
+                    <!--                                    Product Name-->
+                    <!--                                </td>-->
+                    <!--                                <td style="width: 33%; border-top: 2px solid black !important; border-bottom: 2px solid black !important; border-left: 1px solid white !important; border-right: 0px solid white !important; height: 40px; background-color: #ffffff; font-size: 18px; text-align: left; line-height: 40px;">-->
+                    <!--                                    Product Image-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                        </thead>-->
+
+                    <!--                        <tbody>-->
+                    <!--                            <t t-foreach="doc.invoice_line_ids" t-as="line">-->
+                    <!--                                &lt;!&ndash; Section Line &ndash;&gt;-->
+                    <!--                                <t t-if="line.display_type == 'line_section'">-->
+                    <!--                                    <tr>-->
+                    <!--                                        <td colspan="4"-->
+                    <!--                                            style="font-weight: bold; font-size: 13px; text-align: left; padding: 6px; background-color: #d3d3d3;">-->
+                    <!--                                            <t t-esc="line.name"/>-->
+                    <!--                                        </td>-->
+                    <!--                                    </tr>-->
+                    <!--                                </t>-->
+
+                    <!--                                &lt;!&ndash; Note Line &ndash;&gt;-->
+                    <!--                                <t t-elif="line.display_type == 'line_note'">-->
+                    <!--                                    <tr>-->
+                    <!--                                        <td colspan="4" style="font-style: italic; text-align: left; padding: 6px;">-->
+                    <!--                                            <t t-esc="line.name"/>-->
+                    <!--                                        </td>-->
+                    <!--                                    </tr>-->
+                    <!--                                </t>-->
+
+                    <!--                                &lt;!&ndash; Regular Product Line &ndash;&gt;-->
+                    <!--                                <t t-else="">-->
+                    <!--                                    <tr>-->
+                    <!--                                        &lt;!&ndash; Line No &ndash;&gt;-->
+                    <!--                                        <td style="border:2pt solid grey; padding:5pt; border-right:1px solid black; border-left:1px solid white; padding:3pt; text-align: center;">-->
+                    <!--                                            <span t-field="line.line_no"/>-->
+                    <!--                                        </td>-->
+
+                    <!--                                        &lt;!&ndash; Product Name &ndash;&gt;-->
+                    <!--                                        <td style="border:2pt solid grey; padding:5pt; border-right:1px solid black; border-left:1px solid white; padding:3pt;">-->
+                    <!--                                            <span t-field="line.product_id.name"/>-->
+                    <!--                                        </td>-->
+
+                    <!--                                        &lt;!&ndash; Product Code &ndash;&gt;-->
+                    <!--                                        <td style="border:2pt solid grey; padding:5pt; border-right:1px solid black; border-left:1px solid white; padding:3pt;">-->
+                    <!--                                            <span t-field="line.product_id.product_code"/>-->
+                    <!--                                        </td>-->
+
+                    <!--                                        &lt;!&ndash; Product Image &ndash;&gt;-->
+                    <!--                                        <td style="border:2pt solid grey; padding:5pt; text-align:center;">-->
+                    <!--                                            <t t-if="line.product_id.image_1920">-->
+                    <!--                                                <img t-attf-src="data:image/png;base64,{{ line.product_id.image_1920 }}"-->
+                    <!--                                                     style="width:70px; height:70px; object-fit: contain;"/>-->
+                    <!--                                            </t>-->
+                    <!--                                            <t t-else="">-->
+                    <!--                                                <span>No Image</span>-->
+                    <!--                                            </t>-->
+                    <!--                                        </td>-->
+                    <!--                                    </tr>-->
+                    <!--                                </t>-->
+                    <!--                            </t>-->
+                    <!--                        </tbody>-->
+
+                    <!--                    </table>-->
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+<!--    <template id="custom_external_layoutsa_boxed" inherit_id="web.external_layout_boxed">-->
+
+<!--        <xpath expr="//div[@class = 'row mb8']//div[@class = 'col-6 text-end mb4']" position="replace">-->
+
+<!--            <div class="col-6 text-end mb4">-->
+<!--                <t t-foreach="docs" t-as="doc">-->
+<!--                    <img t-if="doc.company_id.logo2" t-att-src="image_data_uri(doc.company_id.logo2)" alt="Logo"/>-->
+<!--                </t>-->
+<!--                &lt;!&ndash;                <div name="company_address" class="float-end mb4">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <ul class="list-unstyled">&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <li t-if="company.is_company_details_empty">&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <div>ahmad</div>&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <t t-esc="company.partner_id"&ndash;&gt;-->
+<!--                &lt;!&ndash;                               t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <li t-else="">&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <t t-esc="company.company_details"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <li t-if="forced_vat">&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <t t-esc="company.country_id.vat_label or 'Tax ID'"/>:&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <span t-esc="forced_vat"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </ul>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </xpath>-->
+<!--    </template>-->
+
+    <!--    <template id="custom_vat_external_layout" inherit_id="web.external_layout">-->
+    <!--    <xpath expr="//div[@class='header']" position="replace">-->
+    <!--        <div class="header" style="text-align: center;">-->
+    <!--            <h1>Custom Header for VAT Invoice</h1>-->
+    <!--            <p>Company: <t t-out="o.company_id.name"/></p>-->
+    <!--        </div>-->
+    <!--    </xpath>-->
+
+    <!--    <xpath expr="//div[@class='footer']" position="replace">-->
+    <!--        <div class="footer" style="text-align: center;">-->
+    <!--            <p>My Custom Footer for VAT Invoice</p>-->
+    <!--            <p>Generated by Odoo</p>-->
+    <!--        </div>-->
+    <!--    </xpath>-->
+    <!--</template>-->
+
+
+</odoo>

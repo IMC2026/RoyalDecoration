@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!--<record id="view_crm_case_opportunities_filter_inherit" model="ir.ui.view">-->
+<!--        <field name="name">crm.opportunity.search.inherit</field>-->
+<!--        <field name="model">crm.lead</field>-->
+<!--        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//filter[@name='won']" position="after">-->
+<!--<filter string="Done Date"-->
+<!--        name="done_date"-->
+<!--        domain="['&amp;', '&amp;',-->
+<!--        ('message_ids.message_type', '=', 'notification'),-->
+<!--        ('message_ids.date', '&gt;=', context.get('date_from')),-->
+<!--        ('message_ids.date', '&lt;=', context.get('date_to'))-->
+<!--    ]"/>            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--        <record id="view_crm_case_opportunities_filter_inherit" model="ir.ui.view">-->
+<!--        <field name="name">crm.opportunity.search.inherit</field>-->
+<!--        <field name="model">crm.lead</field>-->
+<!--        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//filter[@name='won']" position="after">-->
+<!--<filter string="Activity Done Date"-->
+<!--        name="done_date"-->
+<!--        domain="['&amp;', '&amp;',-->
+<!--        ('message_ids.message_type', '=', 'notification'),-->
+<!--        ('message_ids.date', '&gt;=', context.get('date_from')),-->
+<!--        ('message_ids.date', '&lt;=', context.get('date_to'))-->
+<!--    ]"/>            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+
+        <record id="view_crm_case_opportunities_filter_inherit1true" model="ir.ui.view">
+    <field name="name">crm.opportunity.search.inherit</field>
+    <field name="model">crm.lead</field>
+    <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+    <field name="arch" type="xml">
+        <xpath expr="//filter[@name='won']" position="after">
+            <filter
+                string="Done Date"
+                name="done_date"
+                domain="[
+                    '&amp;',
+                    '&amp;',
+                    ('message_ids.message_type', '=', 'notification'),
+                    ('message_ids.date', '&gt;=', context.get('date_from')),
+                    ('message_ids.date', '&lt;=', context.get('date_to'))
+                ]"
+            />
+            <filter
+                string="Done Date Activity"
+                name="done_date_activity"
+                domain="[
+                    '&amp;',
+                    ('activity_log_ids.activity_date', '&gt;=', context.get('date_from')),
+                    ('activity_log_ids.activity_date', '&lt;=', context.get('date_to'))
+                ]"
+            />
+        </xpath>
+    </field>
+</record>
+
+
+
+
+
+    </data>
+</odoo>

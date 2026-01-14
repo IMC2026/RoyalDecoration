@@ -1,0 +1,83 @@
+<odoo>
+    <data>
+
+
+        <record id="view_crm_activity_log_tree" model="ir.ui.view">
+            <field name="name">crm.activity.log.tree</field>
+            <field name="model">crm.activity.log</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="activity_date"/>
+                    <field name="crm_lead_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_crm_activity_log_form" model="ir.ui.view">
+            <field name="name">crm.activity.log.form</field>
+            <field name="model">crm.activity.log</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="activity_date"/>
+                        <field name="crm_lead_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="crm_activity_log_action" model="ir.actions.act_window">
+            <field name="name">Activity Logs</field>
+            <field name="res_model">crm.activity.log</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="crm_activity_log_menu" name="Activity Logs" action="crm_activity_log_action"/>
+
+        <record id="view_crm_lead_tree_inherit" model="ir.ui.view">
+    <field name="name">crm.lead.tree.inherit.activity_log</field>
+    <field name="model">crm.lead</field>
+    <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+    <field name="arch" type="xml">
+         <xpath expr="//field[@name='contact_name']" position="after">
+            <field name="activity_log_ids" widget="many2many_tags"/>
+        </xpath>
+    </field>
+</record>
+
+
+        <record id="view_crm_lead_form_inherit_logs" model="ir.ui.view">
+            <field name="name">crm.lead.form.inherit.logs</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='lead']" position="after">
+                    <page name="activity" string ='Activity'>
+
+                    <field name="activity_log_ids">
+                        <tree>
+                             <field name="crm_lead_id"/>
+                            <field name="name" column_invisible="True"/>
+                            <field name="activity_date"/>
+                        </tree>
+                    </field>
+
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <!--        <record model="ir.ui.view" id="sale_margin_sale_order_line_group_insheritodoo">-->
+        <!--            <field name="name">sale.order.line.margin.group.inherit</field>-->
+        <!--            <field name="model">sale.order</field>-->
+        <!--            <field name="inherit_id"  ref="sale_margin.sale_margin_sale_order"/> &lt;!&ndash; Replace module_name with the original module's name &ndash;&gt;-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <xpath expr="//div[@class='text-nowrap']//span[@name='oe_inline']"-->
+        <!--                       position="after">-->
+        <!--                    <field name ='completion_percentage'/>-->
+        <!--                </xpath>-->
+        <!--            </field>-->
+        <!--         </record>-->
+
+
+    </data>
+</odoo>

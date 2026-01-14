@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="view_partner_form_inherit_custom" model="ir.ui.view">
+        <field name="name">view.partner.form.inherit.custom</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='name']" position="after">
+                    <field name="arabic_name"  placeholder="الإسم بالعربي"/>
+                </xpath>
+
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="commercial_register_no" placeholder="e.g. BE0477472701"
+                      />
+
+
+
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Bank Details">
+                    <group>
+                        <group>
+                            <field name="account_name"/>
+                            <field name="iban"/>
+                        </group>
+                        <group>
+                            <field name="bank_name"/>
+                            <field name="city_name"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+        <record id="view_res_partner_filter_inherit" model="ir.ui.view">
+            <field name="name">res.partner.search.view.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='type_company']" position="before">
+
+                                        <field name="arabic_name"/>
+
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_partner_tree_inherit_custom1" model="ir.ui.view">
+            <field name="name">view.partner.tree.inherit.custom</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="arabic_name"  optional="show" />
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

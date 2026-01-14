@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="qasioun_core.list">
+      <field name="name">qasioun_core list</field>
+      <field name="model">qasioun_core.qasioun_core</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="qasioun_core.action_window">
+      <field name="name">qasioun_core window</field>
+      <field name="res_model">qasioun_core.qasioun_core</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="qasioun_core.action_server">
+      <field name="name">qasioun_core server</field>
+      <field name="model_id" ref="model_qasioun_core_qasioun_core"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="qasioun_core" id="qasioun_core.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="qasioun_core.menu_1" parent="qasioun_core.menu_root"/>
+    <menuitem name="Menu 2" id="qasioun_core.menu_2" parent="qasioun_core.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="qasioun_core.menu_1_list" parent="qasioun_core.menu_1"
+              action="qasioun_core.action_window"/>
+    <menuitem name="Server to list" id="qasioun_core" parent="qasioun_core.menu_2"
+              action="qasioun_core.action_server"/>
+-->
+  </data>
+</odoo>

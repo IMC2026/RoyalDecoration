@@ -1,0 +1,63 @@
+<odoo>
+    <!-- Server Action يفتح نفس شاشة Transfers لكن مفلتر على نوع Consignment -->
+    <record id="action_open_consignment_pickings" model="ir.actions.server">
+        <field name="name">Consignment</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+action = env.ref('stock.action_picking_tree_all').sudo().read()[0]
+
+# جيب كل أنواع التحويل اللي عليها is_consignment=True في نفس شركة المستخدم
+ptypes = env['stock.picking.type'].sudo().search([
+    ('is_consignment', '=', True),
+    ('company_id', '=', env.user.company_id.id),
+])
+
+# فلترة القائمة على الأنواع المطلوبة
+action['domain'] = [('picking_type_id', 'in', ptypes.ids)]
+
+# اختياري: تعيين نوع افتراضي عند إنشاء سجل جديد
+ctx = dict(env.context)
+if ptypes:
+    ctx['default_picking_type_id'] = ptypes[0].id
+action['context'] = ctx
+    ]]></field>
+    </record>
+
+    <record id="view_picking_form_consignment_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.form.consignment.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='owner_id']" position="attributes">
+                <attribute name="invisible">not is_consignment</attribute>
+                <attribute name="required">is_consignment</attribute>
+
+            </xpath>
+
+            <xpath expr="//field[@name='location_id'][@groups='stock.group_stock_multi_locations']"
+                   position="attributes">
+                <!-- كان: 'invisible="picking_type_code == 'incoming'" -->
+                <attribute name="invisible">is_consignment or picking_type_code == 'incoming'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='owner_id']" position="after">
+                <field name="is_consignment" invisible="1"/>
+            </xpath>
+
+            <!--            <xpath expr="(//label[@for='partner_id'])[2]" position="attributes">-->
+            <!--                <attribute name="invisible">not (picking_type_code == 'incoming' or is_consignment)</attribute>-->
+            <!--            </xpath>-->
+
+
+        </field>
+    </record>
+
+    <!-- Menu Item داخل Transfers -->
+    <menuitem id="menu_consignment_pickings"
+              name="Consignment"
+              parent="stock.menu_stock_transfers"
+              action="action_open_consignment_pickings"
+              sequence="26"
+              groups="stock.group_stock_multi_locations"/>
+</odoo>

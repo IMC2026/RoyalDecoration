@@ -1,0 +1,77 @@
+<odoo>
+
+
+    <record id="view_order_form_create_version_button_extension" model="ir.ui.view">
+        <field name="name">sale.order.form.create.version.button.ext</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Button that disappears after click -->
+            <xpath expr="//header/button[@name='action_draft']" position="after">
+                <button name="create_so_version"
+                        type="object"
+                        string="Ready to sent"
+                        class="btn-primary"
+                        invisible="not show_ready_to_sent or state in ['sale', 'cancel']"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="invisible">state not in ['draft', 'sent', 'sale'] or not id</attribute>
+            </xpath>
+
+
+            <xpath expr="//group[@name='order_details']/div[@class='o_td_label'][label[@for='date_order']]"
+                   position="attributes">
+                <attribute name="groups">base.group_no_one</attribute>
+                <attribute name="invisible">state in ['sale','cancel','parent']</attribute>
+            </xpath>
+
+            <!-- Field: date_order للـ Quotation Date (المخفى عند البيع/الإلغاء) -->
+            <xpath expr="//group[@name='order_details']/field[@name='date_order' and @groups='base.group_no_one']"
+                   position="attributes">
+                <attribute name="invisible">state in ['sale','cancel','parent']</attribute>
+                <attribute name="readonly">state in ['cancel','sale','parent']</attribute>
+            </xpath>
+
+            <!-- Field: date_order للـ Order Date (بعد التأكيد) -->
+            <xpath expr="//group[@name='order_details']/field[@name='date_order' and not(@groups)]"
+                   position="attributes">
+                <!-- تظل غير مرئية في الدرافـت/سِنت كما هي -->
+                <attribute name="readonly">state in ['cancel','sale','parent']</attribute>
+            </xpath>
+
+
+            <!-- Hidden fields storage -->
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="version_no" invisible="1"/>
+                <field name="sale_order_origin_version" invisible="1"/>
+                <field name="show_ready_to_sent" invisible="1"/>
+                <field name="show_confirm_button" invisible="1"/>
+                <field name="is_final_version" invisible="1"/>
+                <field name="so_revisions_count" invisible="1"/>
+                <field name="so_origin_count" invisible="1"/>
+            </xpath>
+
+
+            <!-- Revision tracking buttons -->
+            <xpath expr="//sheet/div/button[@name='action_view_invoice']" position="after">
+                <button name="action_view_sale_revisions"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-copy"
+                        invisible="not so_revisions_count">
+                    <field name="so_revisions_count" widget="statinfo" string="Sale Revisions"/>
+                </button>
+
+                <button name="action_view_sale_origin"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-history"
+                        invisible="not so_origin_count">
+                    <field name="so_origin_count" widget="statinfo" string="Sale Origin"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

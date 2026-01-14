@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+
+
+        <!-- تعديل فورم الـ Picking -->
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="button_validates"
+                            string="Do Action"
+                            type="object"
+                            groups= 'date_done_custom.appear_date_done'
+                            class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- تعديل فورم الـ Scrap -->
+<!--        <record id="inherit_stock_scrap_form_view" model="ir.ui.view">-->
+<!--            <field name="name">stock.scrap.form.inherit</field>-->
+<!--            <field name="model">stock.scrap</field>-->
+<!--            <field name="inherit_id" ref="stock.stock_scrap_form_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//header" position="inside">-->
+<!--                    <button name="do_scrap_wiard"-->
+<!--                            type="object"-->
+<!--                            string="Custom Action"-->
+<!--                            groups= 'date_done_custom.appear_date_done'-->
+<!--                            class="btn-primary"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+</odoo>

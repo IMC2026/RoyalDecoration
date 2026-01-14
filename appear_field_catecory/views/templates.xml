@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+          <record id="view_category_property_form_stock_inherit" model="ir.ui.view">
+      <field name="name">Inherited Category Property Form</field>
+      <field name="model">product.category</field>
+      <field name="inherit_id" ref="stock_account.view_category_property_form_stock"/>
+      <field name="arch" type="xml">
+        <!-- Using XPath to insert a new field inside a group in the form -->
+        <xpath expr="//field[@name='property_valuation']" position="after">
+          <field name="property_valuation"/>
+        </xpath>
+      </field>
+    </record>
+
+        <!--        <record id="account_move_views_forms" model="ir.ui.view">-->
+        <!--            <field name="name">account.move.inherit.sale.product.configurator</field>-->
+        <!--            <field name="model">account.move</field>-->
+        <!--            <field name="inherit_id" ref="account.view_move_form"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_id']" position="before">-->
+
+        <!--                    <field string="Completion Amount" name="completion_amount"/>-->
+        <!--                    <field string="Completion Percentage" name="completion_percentage"/>-->
+        <!--                </xpath>-->
+
+        <!--            </field>-->
+        <!--        </record>-->
+
+
+
+
+    </data>
+</odoo>

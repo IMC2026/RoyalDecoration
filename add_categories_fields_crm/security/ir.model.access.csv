@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_work_type,crm.work.type,model_crm_work_type,,1,1,1,1
+access_crm_type_of_project,crm.type.of.project,model_crm_type_of_project,,1,1,1,1
+access_crm_material_type,crm.material.type,model_crm_material_type,,1,1,1,1
+access_crm_material_description,crm.material.description,model_crm_material_description,,1,1,1,1
+access_crm_thickness_mm,crm.thickness.mm,model_crm_thickness_mm,,1,1,1,1
+access_crm_finish_type,crm.finish.type,model_crm_finish_type,,1,1,1,1
+access_crm_color,crm.color,model_crm_color,,1,1,1,1
+access_crm_glossiness_lacquer,crm.glossiness.lacquer,model_crm_glossiness_lacquer,,1,1,1,1
+access_crm_drawing,crm.drawing,model_crm_drawing,,1,1,1,1
+access_crm_control_sample,crm.control.sample,model_crm_control_sample,,1,1,1,1
+access_crm_installation_type,crm.installation.type,model_crm_installation_type,,1,1,1,1
+

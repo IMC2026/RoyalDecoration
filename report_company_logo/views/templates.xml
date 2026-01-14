@@ -1,0 +1,42 @@
+<odoo>
+    <template id="custom_external_layout_logo" inherit_id="web.external_layout_boxed" name="Custom Logos in External Layout">
+        <xpath expr="//div[@class='o_boxed_header']/div[@class='row mb8']" position="replace">
+            <t t-set="logo1" t-value="company.logo"/>
+            <t t-set="logo2" t-value="docs and docs[0].company_id.logo2"/>
+
+            <t t-if="logo1 and logo2">
+                <div class="row mb4 align-items-center" style="padding: 0 30px;">
+                    <div class="col-6 d-flex justify-content-start">
+                        <img t-att-src="image_data_uri(logo1)" alt="Left Logo"
+                             style="max-height: 60px; width: auto;margin-left :-40px ; object-fit: contain;"/>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <img t-att-src="image_data_uri(logo2)" alt="Right Logo"
+                             style="max-height:60px; width: auto;margin-right :-40px ; object-fit: contain;"/>
+                    </div>
+                </div>
+            </t>
+            <t t-elif="logo1 and not logo2">
+                <div class="row mb4 justify-content-center">
+                    <div class="col-auto">
+                        <img t-att-src="image_data_uri(logo1)" alt="Centered Logo"
+                             style="max-height: 150px; width: auto; object-fit: contain;"/>
+                    </div>
+                </div>
+            </t>
+            <t t-elif="logo2 and not logo1">
+                <div class="row mb4 justify-content-center">
+                    <div class="col-auto">
+                        <img t-att-src="image_data_uri(logo2)" alt="Centered Logo"
+                             style="max-height: 150px; width: auto; object-fit: contain;"/>
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="row mb4 justify-content-center text-muted">
+                    <div class="col-auto">No logo available</div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit CRM Lead Form View -->
+    <record id="view_crm_lead_form_custom_fields" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.custom.fields</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="work_type_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_work_type" string="Note"/>
+                <field name="type_of_project_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_type_of_project" string="Note"/>
+                <field name="material_type_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_material_type" string="Note"/>
+                <field name="material_description_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_material_description" string="Note"/>
+                <field name="thickness_mm_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_thickness_mm" string="Note"/>
+                <field name="finish_type_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_finish_type" string="Note"/>
+                <field name="color_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_color" string="Note"/>
+                <field name="glossiness_lacquer_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_glossiness_lacquer" string="Note"/>
+                <field name="drawing_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_drawing" string="Note"/>
+                <field name="control_sample_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_control_sample" string="Note"/>
+                <label for="delivery_time" string="Delivery Time"/>
+                <div class="o_row">
+                    <field name="delivery_time"/>
+                    <span style="margin-left: 5px;">days</span>
+                </div>
+                <field name="note_delivery_time" string="Note"/>
+                <field name="installation_type_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="note_installation_type" string="Note"/>
+
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_crm_work_type" model="ir.actions.act_window">
+        <field name="name">Work Type</field>
+        <field name="res_model">crm.work.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_crm_work_type" parent="crm.crm_menu_config" name="Work Type" action="add_categories_fields_crm.action_crm_work_type" sequence="20"/>
+
+    <!-- Type of Project -->
+    <record id="action_crm_type_of_project" model="ir.actions.act_window">
+        <field name="name">Type of Project</field>
+        <field name="res_model">crm.type.of.project</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_crm_type_of_project" parent="crm.crm_menu_config" name="Type of Project" action="add_categories_fields_crm.action_crm_type_of_project" sequence="21"/>
+
+    <!-- Material Type -->
+    <record id="action_crm_material_type" model="ir.actions.act_window">
+        <field name="name">Material Type</field>
+        <field name="res_model">crm.material.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_crm_material_type" parent="crm.crm_menu_config" name="Material Type" action="add_categories_fields_crm.action_crm_material_type" sequence="23"/>
+
+    <!-- Material Description -->
+    <record id="action_crm_material_description" model="ir.actions.act_window">
+        <field name="name">Material Description</field>
+        <field name="res_model">crm.material.description</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_crm_material_description" parent="crm.crm_menu_config" name="Material Description" action="add_categories_fields_crm.action_crm_material_description"
+              sequence="24"/>
+
+    <!-- Thickness (mm) -->
+    <record id="action_crm_thickness_mm" model="ir.actions.act_window">
+        <field name="name">Thickness (mm)</field>
+        <field name="res_model">crm.thickness.mm</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_crm_thickness_mm" parent="crm.crm_menu_config" name="Thickness (mm)" action="add_categories_fields_crm.action_crm_thickness_mm" sequence="25"/>
+
+    <!-- Finish Type -->
+    <record id="action_crm_finish_type" model="ir.actions.act_window">
+        <field name="name">Finish Type</field>
+        <field name="res_model">crm.finish.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_crm_finish_type" parent="crm.crm_menu_config" name="Finish Type" action="add_categories_fields_crm.action_crm_finish_type" sequence="26"/>
+
+    <!-- Color -->
+    <record id="action_crm_color" model="ir.actions.act_window">
+        <field name="name">Color</field>
+        <field name="res_model">crm.color</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_crm_color" parent="crm.crm_menu_config" name="Color" action="add_categories_fields_crm.action_crm_color" sequence="27"/>
+
+    <!-- Glossiness of Lacquer -->
+    <record id="action_crm_glossiness_lacquer" model="ir.actions.act_window">
+        <field name="name">Glossiness of Lacquer</field>
+        <field name="res_model">crm.glossiness.lacquer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_crm_glossiness_lacquer" parent="crm.crm_menu_config" name="Glossiness of Lacquer" action="add_categories_fields_crm.action_crm_glossiness_lacquer"
+              sequence="28"/>
+
+    <!-- Drawing -->
+    <record id="action_crm_drawing" model="ir.actions.act_window">
+        <field name="name">Drawing</field>
+        <field name="res_model">crm.drawing</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_crm_drawing" parent="crm.crm_menu_config" name="Drawing" action="add_categories_fields_crm.action_crm_drawing" sequence="29"/>
+
+    <!-- Control Sample -->
+    <record id="action_crm_control_sample" model="ir.actions.act_window">
+        <field name="name">Control Sample</field>
+        <field name="res_model">crm.control.sample</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_crm_control_sample" parent="crm.crm_menu_config" name="Control Sample" action="add_categories_fields_crm.action_crm_control_sample" sequence="30"/>
+
+    <record id="action_crm_installation_type" model="ir.actions.act_window">
+        <field name="name">Installation Types</field>
+        <field name="res_model">crm.installation.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_crm_installation_type" name="Installation" parent="crm.crm_menu_config"  action="add_categories_fields_crm.action_crm_installation_type"
+          sequence="31"/>
+
+</odoo>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <data>
+        <template id="purchase_order_td_alignment" inherit_id="purchase.report_purchaseorder_document">
+            <xpath expr="//div[@class='page']" position="inside">
+                <style>
+                    .page td {
+                    text-align: center !important;
+                    border-bottom: 1px solid black;
+                    border-top: 1px solid black;
+                    }
+                </style>
+            </xpath>
+        </template>
+        <template id="sale_order_td_alignment" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[@class='page']" position="inside">
+                <style>
+                    .page td {
+                    text-align: center !important;
+                    border-bottom: 1px solid black;
+                    border-top: 1px solid black;
+                    }
+
+                    .page th {
+                    text-align: center !important;
+                    }
+
+                    h2 {
+                    font-weight: bold !important;
+                    text-align: left;
+                    margin: 0;
+                    }
+                </style>
+
+            </xpath>
+        </template>
+        <template id="report_saleorder_document_customizationsale_odoo" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//table[@class='table table-sm o_main_table table-borderless mt-4']//thead/tr[1]/th[1]"
+                   position="before">
+                <th name="th_line_no" class="text-start">
+                    <span>No.</span>
+                </th>
+            </xpath>
+            <xpath expr="//tbody[@class='sale_tbody']//td[@name='td_name']" position="before">
+                <td style="width: 5%;" name="td_line_no">
+                    <span t-field="line.line_no"/>
+                </td>
+            </xpath>
+
+            <xpath expr="//td[@name='td_name']" position="replace">
+                <td name="td_name" style="width: 45%;">
+                    <span t-field="line.name">Bacon Burger</span>
+                </td>
+            </xpath>
+
+            <xpath expr="//div[@id='total']/div" position="attributes">
+                <attribute name="style">width: 50%; margin-left: auto;</attribute>
+            </xpath>
+
+
+            <xpath expr="//thead[@style='display: table-row-group']/tr/th[@name='th_taxes']" position="replace">
+                <th name="th_taxes" class="text-end">VAT Taxes %</th>
+            </xpath>
+
+
+            <!-- ✅ Remove the default address and invoice/shipping blocks -->
+            <xpath expr="//t[@t-set='address']" position="replace"/>
+            <xpath expr="//t[@t-set='information_block']" position="replace"/>
+            <xpath expr="//div[@id='informations']" position="replace"/>
+
+
+            <xpath expr="//h2[@class='mt-4']" position="after">
+                <!-- Two-column info block using Bootstrap grid -->
+                <div class="row" style="padding: 10px; font-size: 15px; margin-top: 10px;">
+                    <!-- LEFT: Customer Info -->
+                    <div class="col-7">
+                        <p t-if="doc.partner_id.name">
+                            <strong style="color: rgb(175, 163, 149); font-weight: bold;">Customer :</strong>
+                            <span style="margin-left: 15px;" t-field="doc.partner_id.name"/>
+                        </p>
+
+                        <p t-if="doc.partner_id.city">
+                            <strong style="color: rgb(175, 163, 149); font-weight: bold;">City :</strong>
+                            <span style="margin-left: 15px;" t-field="doc.partner_id.city"/>
+                        </p>
+
+                        <p t-if="doc.partner_id.vat">
+                            <strong style="color: rgb(175, 163, 149); font-weight: bold;">VAT Number :</strong>
+                            <span style="margin-left: 15px;" t-field="doc.partner_id.vat"/>
+                        </p>
+                    </div>
+
+                    <!-- RIGHT: Quotation Info -->
+                    <div class="col-5" style="text-align: left;">
+                        <p t-if="doc.date_order">
+                            <strong style="color: rgb(175, 163, 149); font-weight: bold; display: inline-block; width: 150px;">
+                                Quotation Date:
+                            </strong>
+                            <span t-field="doc.date_order" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                        </p>
+
+                        <p t-if="doc.validity_date">
+                            <strong style="color: rgb(175, 163, 149); font-weight: bold; display: inline-block; width: 150px;">
+                                Expiration Date:
+                            </strong>
+                            <span t-field="doc.validity_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                        </p>
+
+                        <p t-if="doc.payment_term_id.name">
+                            <strong style="color: rgb(175, 163, 149); font-weight: bold; display: inline-block; width: 150px;">
+                                Payment Terms:
+                            </strong>
+                            <span t-field="doc.payment_term_id.name"/>
+                        </p>
+
+                        <!--                        <p t-if="doc.user_id.name">-->
+                        <!--                            <strong style="color: rgb(175, 163, 149); font-weight: bold; display: inline-block; width: 150px;">-->
+                        <!--                                Salesperson:-->
+                        <!--                            </strong>-->
+                        <!--                            <span t-field="doc.user_id"/>-->
+                        <!--                        </p>-->
+                    </div>
+
+                </div>
+
+                <!-- Title block -->
+                <div class="row" t-if="doc.title">
+                    <div class="col-6" style="padding: 10px; font-size: 15px; margin-top: 10px;">
+                        <strong style="color: rgb(175, 163, 149); font-weight: bold;">Title:</strong>
+                        <span t-field="doc.title"/>
+                    </div>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[@class='page']" position="attributes">
+                <attribute name="style">margin-top: -60px;</attribute>
+            </xpath>
+
+            <!-- Remove top margin from the heading -->
+            <xpath expr="//div[@class='page']/h2" position="attributes">
+                <attribute name="class">mt-0</attribute>
+            </xpath>
+
+        </template>
+
+
+        <template id="report_purchaseorder_document_customizationpurchaseorder_odoo"
+                  inherit_id="purchase.report_purchaseorder_document">
+
+            <!-- Add new headers before 'name' -->
+            <xpath expr="//table[@class='table table-sm o_main_table table-borderless mt-4']//thead/tr[1]/th[1]"
+                   position="before">
+
+                <th name="th_line_no">
+                    <strong>No.</strong>
+                </th>
+            </xpath>
+
+            <xpath expr="//tbody//tr[1]//td[@id='product']" position="before">
+                <td name="td_line_no">
+                    <span t-field="line.line_no"/>
+                </td>
+            </xpath>
+        </template>
+        <template id="report_purchasequotation_add_line_no" inherit_id="purchase.report_purchasequotation_document">
+
+            <xpath expr="//span[@t-field='order_line.date_planned']" position="attributes">
+                <attribute name="t-options">{'widget': 'date'}</attribute>
+            </xpath>
+
+
+            <!-- Add <th> to header -->
+            <xpath expr="//table[@class='table table-sm mt-4']/thead/tr/th[@name='th_description']" position="before">
+                <th name="th_line_no">
+                    <strong>No.</strong>
+                </th>
+            </xpath>
+            <!-- Add <td> before product description -->
+            <xpath expr="//table[@class='table table-sm mt-4']//t[@t-if='not order_line.display_type']/td[@id='product']"
+                   position="before">
+                <td name="td_line_no" class="text-center">
+                    <span t-field="order_line.line_no"/>
+                </td>
+            </xpath>
+
+        </template>
+
+        <template id="report_purchaseorder_document_inherit_date" inherit_id="purchase.report_purchaseorder_document">
+            <xpath expr="//p[@t-field='o.date_approve']" position="attributes">
+                <attribute name="t-options">{'widget': 'date'}</attribute>
+            </xpath>
+            <xpath expr="//span[@t-field='line.date_planned']" position="attributes">
+                <attribute name="t-options">{'widget': 'date'}</attribute>
+            </xpath>
+            <xpath expr="//*[@t-field='o.date_order']" position="attributes">
+                <attribute name="t-options">{'widget': 'date'}</attribute>
+            </xpath>
+        </template>
+
+
+    </data>
+</odoo>

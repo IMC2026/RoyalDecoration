@@ -1,0 +1,28 @@
+<!--<odoo>-->
+<!--    &lt;!&ndash; Action menu entry for list/form of account.move (invoices) &ndash;&gt;-->
+<!--    <record id="server_action_duplicate_with_confirm_invoice" model="ir.actions.server">-->
+<!--        <field name="name">Duplicate (with confirmation)</field>-->
+<!--        <field name="model_id" ref="account.model_account_move"/>-->
+<!--        <field name="binding_model_id" ref="account.model_account_move"/>-->
+<!--        <field name="binding_type">action</field>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--action = env['ir.actions.act_window']._for_xml_id('imc_duplicate_confirm_sale.action_open_duplicate_confirm_wizard')-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Button on invoice form header &ndash;&gt;-->
+<!--    <record id="account_invoice_form_inherit_dup_confirm_btn" model="ir.ui.view">-->
+<!--        <field name="name">account.invoice.form.dup.confirm.button</field>-->
+<!--        <field name="model">account.move</field>-->
+<!--        <field name="inherit_id" ref="account.view_out_invoice_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//header" position="inside">-->
+<!--                <button type="action"-->
+<!--                        name="%(server_action_duplicate_with_confirm_invoice)d"-->
+<!--                        string="Duplicate (Confirm)"-->
+<!--                        class="btn-secondary"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->

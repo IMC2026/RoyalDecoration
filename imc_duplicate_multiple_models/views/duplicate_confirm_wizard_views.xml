@@ -1,0 +1,27 @@
+<odoo>
+    <!-- Wizard form -->
+    <record id="view_duplicate_confirm_wizard_form" model="ir.ui.view">
+        <field name="name">duplicate.confirm.wizard.form</field>
+        <field name="model">duplicate.confirm.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bye-bye, record!">
+                <group>
+                    <field name="message" nolabel="1" readonly="1" widget="html"/>
+                </group>
+                <footer>
+                    <button name="action_duplicate" type="object" class="btn-primary" string="Duplicate"/>
+                    <button name="action_cancel" type="object" class="btn-secondary" string="No, keep it"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Generic window action to open wizard -->
+    <record id="action_open_duplicate_confirm_wizard" model="ir.actions.act_window">
+        <field name="name">Confirm Duplication</field>
+        <field name="res_model">duplicate.confirm.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_duplicate_confirm_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

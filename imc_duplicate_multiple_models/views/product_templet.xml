@@ -1,0 +1,13 @@
+<odoo>
+    <!-- Action menu entry for list/form of product.template -->
+    <record id="server_action_duplicate_with_confirm_product" model="ir.actions.server">
+        <field name="name">📋New Duplicate</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">
+action = env['ir.actions.act_window']._for_xml_id('imc_duplicate_multiple_models.action_open_duplicate_confirm_wizard')
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_crm_case_tree_view_oppor_inherit_id" model="ir.ui.view">
+        <field name="name">crm.lead.tree.inherit.show.id.before.name</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <!-- Insert 'id' before the 'name' field -->
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="id"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="crm_lead_kanban_view_inherit_show_id" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.inherit.show.id</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="arch" type="xml">
+            <!-- Add to the fields list (must be outside templates) -->
+            <xpath expr="//kanban" position="inside">
+                <field name="id"/>
+            </xpath>
+
+            <!-- Add the display of ID inside the kanban-box -->
+            <xpath expr="//div[@class='oe_kanban_details']" position="before">
+                <div class="oe_kanban_details">
+                    <span class="text-muted" style=" color: rgb(255, 75, 100) !important;font-weight: bold;">ID:
+                        <t t-esc="record.id.raw_value"/>
+                    </span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="crm_lead_form_inherit_show_id" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.show.id</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Insert the ID field before the name field directly -->
+            <xpath expr="//field[@name='name']" position="before">
+                <div class="o_row mb-2">
+                    <div class="col-12">
+                        <label for="id" class="text-muted fw-bold me-2">ID:</label>
+                        <field name="id" readonly="1" class="text-muted fw-bold me-2"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="crm_lead_search_inherit_add_id" model="ir.ui.view">
+        <field name="name">crm.lead.search.inherit.add.id</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <!-- Insert ID field after the name search -->
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="id" string="ID"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- views/crm_lead_view.xml -->
+    <record id="view_crm_lead_form_inherit_hide_arabic" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.arabic</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_arabic_name" invisible="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_tree_inherit_hide_arabic" model="ir.ui.view">
+        <field name="name">crm.lead.tree.inherit.arabic</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email_from']" position="after">
+                <field name="partner_arabic_name" invisible="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- views/sale_order_view.xml -->
+    <record id="view_order_form_inherit_hide_arabic" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.arabic</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_arabic_name" invisible="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_tree_inherit_hide_arabic" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherit.arabic</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_arabic_name" invisible="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- views/crm_lead_search.xml -->
+    <record id="view_crm_lead_search_inherit_arabic" model="ir.ui.view">
+        <field name="name">crm.lead.search.inherit.arabic</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="partner_arabic_name" string="Arabic Name"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- views/sale_order_search.xml -->
+    <record id="view_sale_order_search_inherit_arabic" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit.arabic</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="partner_arabic_name" string="Arabic Name"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_search_inherit_arabic" model="ir.ui.view">
+        <field name="name">purchase.order.search.inherit.arabic</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="partner_arabic_name" string="Arabic Name"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_form_inherit_arabic" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.arabic</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_arabic_name" invisible="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- your_module/views/crm_lead_views.xml -->
+
+    <record id="view_crm_lead_form_inherit_orders_btn" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.orders.btn</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Target the original button by its name -->
+            <xpath expr="//button[@name='action_view_sale_order']" position="attributes">
+                <!-- Replace the invisible condition -->
+                <attribute name="invisible">sale_order_count == 0</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

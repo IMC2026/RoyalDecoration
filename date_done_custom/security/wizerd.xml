@@ -1,0 +1,5 @@
+<odoo>
+  <record id="appear_date_done" model="res.groups">
+            <field name="name">validate Access button</field>
+        </record>
+</odoo>

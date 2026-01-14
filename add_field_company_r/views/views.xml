@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record id="view_company_form_inherit_bank" model="ir.ui.view">
+            <field name="name">res.company.bank.info</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Bank Details">
+                        <group>
+                            <field name="bank_account_name"/>
+                            <field name="bank_iban"/>
+                            <field name="bank_name"/>
+                            <field name="bank_city"/>
+                            <field name="logo2" invisible="1"  widget="image"/>
+                                  <field name="commercial_register_no" placeholder="e.g. BE0477472701"/>-->
+
+                        </group>
+                    </page>
+
+                </xpath>
+
+                <xpath expr="//field[@name='color']" position="after">
+                    <field name="commercial_register_no" placeholder="e.g. BE0477472701"/>
+                    <!--                <field name="logo2" widget="image"/>-->
+                    <field name="logo2" invisible="1"  widget="image"/>
+                    <!--                <field name="logo4" widget="image"/>-->
+
+
+                </xpath>
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="arabic_name" placeholder="الإسم بالعربي"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_form_account" model="ir.ui.view">
+            <field name="name">sale.order.form.custom</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="before">
+                    <field name="line_no" attrs="{'column_invisible': True}"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>

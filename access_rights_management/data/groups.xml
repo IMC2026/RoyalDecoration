@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <!-- Financial Reports -->
+        <record id="group_balance_sheet_reports" model="res.groups">
+            <field name="name">Balance Sheet</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_profit_and_loss_reports" model="res.groups">
+            <field name="name">Profit and Loss</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <!-- Partner Reports -->
+        <record id="group_partner_ledger_reports" model="res.groups">
+            <field name="name">Partner Ledger</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_aged_partner_balance_reports" model="res.groups">
+            <field name="name">Aged Partner Balance</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_aged_receivable_reports" model="res.groups">
+            <field name="name">Aged Receivable</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_aged_payable_reports" model="res.groups">
+            <field name="name">Aged Payable</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <!-- Audit Reports -->
+        <record id="group_general_ledger_reports" model="res.groups">
+            <field name="name">General Ledger</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_trial_balance_reports" model="res.groups">
+            <field name="name">Trial Balance</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_tax_report_reports" model="res.groups">
+            <field name="name">Tax Report</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_journal_audit_reports" model="res.groups">
+            <field name="name">Journal Audit</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <!-- Daily Reports -->
+        <record id="group_day_book_reports" model="res.groups">
+            <field name="name">Day Book</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_cash_book_reports" model="res.groups">
+            <field name="name">Cash Book</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_bank_book_reports" model="res.groups">
+            <field name="name">Bank Book</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <!-- Management Reports -->
+        <record id="group_invoice_analysis_reports" model="res.groups">
+            <field name="name">Invoice Analysis</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_analytic_reporting_reports" model="res.groups">
+            <field name="name">Analytic Reporting</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_budgets_analysis_reports" model="res.groups">
+            <field name="name">Budgets Analysis</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+        <record id="group_assets_reports" model="res.groups">
+            <field name="name">Assets</field>
+            <field name="category_id" ref="base.module_category_accounting"/>
+        </record>
+
+
+    </data>
+</odoo>

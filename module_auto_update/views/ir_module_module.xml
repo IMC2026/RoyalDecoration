@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+        License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+    -->
+    <record id="ir_module_module_upgrade_changed_checksum" model="ir.actions.server">
+        <field name="name">Auto-Upgrade Modules</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="base.model_ir_module_module" />
+        <field name="state">code</field>
+        <field name="code">
+            action = model.upgrade_changed_checksum()
+        </field>
+    </record>
+
+    <record id="view_upgrade_confirmation_form" model="ir.ui.view">
+    <field name="name">upgrade.confirmation.form</field>
+    <field name="model">upgrade.confirmation.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Confirm Upgrade">
+            <group>
+                <span style="white-space: nowrap;">Are you sure you want to upgrade the modules?</span>
+            </group>
+            <footer>
+                <button string="Confirm" type="object" name="action_confirm" class="btn-primary"/>
+                <button string="Cancel" class="btn-secondary" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="action_upgrade_confirmation" model="ir.actions.act_window">
+    <field name="name">Upgrade Confirmation</field>
+    <field name="res_model">upgrade.confirmation.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_upgrade_confirmation_form"/>
+    <field name="target">new</field>
+</record>
+
+    <menuitem
+        name="Auto-Upgrade Modules"
+        action="action_upgrade_confirmation"
+        id="menu_ir_module_module_upgrade_changed_checksum"
+        groups="base.group_system"
+        parent="base.menu_management"
+        sequence="45"
+    />
+</odoo>

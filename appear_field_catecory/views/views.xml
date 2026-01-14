@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+<!--        <record model="ir.ui.view" id="sale_margin_sale_order_line_group_insheritodoo">-->
+<!--            <field name="name">sale.order.line.margin.group.inherit</field>-->
+<!--            <field name="model">sale.order</field>-->
+<!--            <field name="inherit_id"  ref="sale_margin.sale_margin_sale_order"/> &lt;!&ndash; Replace module_name with the original module's name &ndash;&gt;-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//div[@class='text-nowrap']//span[@name='oe_inline']"-->
+<!--                       position="after">-->
+<!--                    <field name ='completion_percentage'/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--         </record>-->
+
+
+
+    </data>
+</odoo>

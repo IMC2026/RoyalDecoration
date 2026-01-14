@@ -1,0 +1,138 @@
+<odoo>
+    <record id="sale_order_form_inherit_change_button" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.change.button</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Replace the 'Confirm' button when invisible = 'state != 'sent'' -->
+            <xpath expr="//header/button[@name='action_confirm' and @id='action_confirm']"
+                   position="replace">
+                <button name="action_confirm"
+                        id="action_confirm"
+                        string="Convert to SO"
+                        type="object"
+                        class="btn-primary"
+                        context="{'validate_analytic': True}"
+                        data-hotkey="q"
+                        invisible="state != 'sent'"
+                        groups="sale_order_create_version.group_sale_confirm_button"
+                />
+            </xpath>
+            <!-- Replace the 'Confirm' button when invisible = 'state != 'draft'' -->
+            <xpath expr="//header/button[@name='action_confirm' and not(@id)]"
+                   position="replace">
+                <button name="action_confirm"
+                        string="Convert to SO"
+                        type="object"
+                        class="btn btn-primary"
+                        context="{'validate_analytic': True}"
+                        data-hotkey="q"
+                        invisible="state != 'draft'"
+                        groups="sale_order_create_version.group_sale_confirm_button"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_partner_form_attachments" model="ir.ui.view">
+        <field name="name">res.partner.form.attachments</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page string="Attach Files">
+                    <field name="partner_attachment_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="attachment" string="Attachment File" widget="many2many_binary"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <!-- FORM: add after title -->
+<!--    <record id="sale_order_form_add_crm_lead_id_number" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.form.add.crm.lead.id.number</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='title']" position="after">-->
+<!--                <field name="crm_lead_id_number" readonly="1" invisible="True"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <!-- TREE (Quotations): add after partner_id -->
+<!--    <record id="sale_order_tree_add_crm_lead_id_number" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.tree.add.crm.lead.id.number</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_quotation_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='partner_id']" position="after">-->
+<!--                <field name="crm_lead_id_number" readonly="1" column_invisible="True"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    <record id="sale_order_search_crm_filters" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.search.crm.filters</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_sales_order_filter"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--            &lt;!&ndash; Keep your CRM group filter &ndash;&gt;-->
+<!--            <xpath expr="//search" position="inside">-->
+<!--                <separator/>-->
+<!--                <group string="CRM">-->
+<!--                    <filter name="from_crm" string="From CRM Opportunity"-->
+<!--                            domain="[('opportunity_id','!=', False)]"/>-->
+<!--                </group>-->
+<!--                <separator/>-->
+<!--            </xpath>-->
+
+<!--            &lt;!&ndash; Add Lead ID search right after Order &ndash;&gt;-->
+<!--&lt;!&ndash;            <xpath expr="//search/field[@name='name']" position="after">&ndash;&gt;-->
+<!--&lt;!&ndash;                &lt;!&ndash; THIS is the important one: search by ID &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                <field name="crm_lead_id_number"&ndash;&gt;-->
+<!--&lt;!&ndash;                       string="CRM Lead ID"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    <record id="account_view_account_invoice_filter_add_total" model="ir.ui.view">-->
+<!--        <field name="name">account.view.account.invoice.filter.add.total</field>-->
+<!--        <field name="model">account.move</field>-->
+<!--        <field name="inherit_id" ref="account.view_account_invoice_filter"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--            &lt;!&ndash; Add Total right after Invoice search field &ndash;&gt;-->
+<!--            <xpath expr="//search/field[@name='name']" position="after">-->
+<!--                &lt;!&ndash; Total (amount_total) &ndash;&gt;-->
+<!--                <field name="amount_total" string="Total"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//search" position="inside">-->
+
+<!--                <separator/>-->
+
+<!--                <group string="Totals">-->
+<!--                    <filter name="tot_signed_ge_1000" string="Total Signed ≥ 1,000"-->
+<!--                            domain="[('amount_total_signed', '&gt;=', 1000)]"/>-->
+
+<!--                    <filter name="tot_signed_ge_5000" string="Total Signed ≥ 5,000"-->
+<!--                            domain="[('amount_total_signed', '&gt;=', 5000)]"/>-->
+
+<!--                    <filter name="tot_signed_ge_10000" string="Total Signed ≥ 10,000"-->
+<!--                            domain="[('amount_total_signed', '&gt;=', 10000)]"/>-->
+
+<!--                    <separator/>-->
+
+<!--                    <filter name="tot_signed_le_1000" string="Total Signed ≤ 1,000"-->
+<!--                            domain="[('amount_total_signed', '&lt;=', 1000)]"/>-->
+<!--                </group>-->
+
+<!--                <separator/>-->
+
+<!--            </xpath>-->
+
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>

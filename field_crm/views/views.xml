@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+ <record id="view_crm_lead_form_custom" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.purchase.sale</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Job Position field in CRM is named 'partner_contact_id' -->
+            <field name="partner_contact_id" position="after">
+                <field name="purchase_id"/>
+                <field name="sale_id"/>
+            </field>
+        </field>
+    </record>
+  </data>
+</odoo>
